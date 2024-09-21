@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: org.example.ReplaceCharacterTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.033 s <<< FAILURE! - in org.example.ReplaceCharacterTest
+replaceConsecutiveCharacter1(org.example.ReplaceCharacterTest)  Time elapsed: 0.002 s  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<[]d> but was:<[`]d>
+	at org.example.ReplaceCharacterTest.replaceConsecutiveCharacter1(ReplaceCharacterTest.java:13)
+
+replaceConsecutiveCharacter3(org.example.ReplaceCharacterTest)  Time elapsed: 0 s  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<[abc]> but was:<[`ab]>
+	at org.example.ReplaceCharacterTest.replaceConsecutiveCharacter3(ReplaceCharacterTest.java:25)
+
+replaceConsecutiveCharacter4(org.example.ReplaceCharacterTest)  Time elapsed: 0 s  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<ab[c]> but was:<ab[d]>
+	at org.example.ReplaceCharacterTest.replaceConsecutiveCharacter4(ReplaceCharacterTest.java:31)
+
