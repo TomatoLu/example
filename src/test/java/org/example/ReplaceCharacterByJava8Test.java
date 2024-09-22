@@ -1,33 +1,34 @@
 package org.example;
 
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
-public class ReplaceCharacterTest {
+public class ReplaceCharacterByJava8Test {
 
     private StringHandlerImpl stringHandlerImpl = new StringHandlerImpl();
 
     @Test
     public void replaceConsecutiveCharacter1() {
         // 测试用例1: 基本情况
-        assertEquals("", stringHandlerImpl.replaceConsecutiveCharacter("abcccba"));
+        assertEquals("d", stringHandlerImpl.replaceConsecutiveCharacterByJava8("abcccbad"));
     }
 
     @Test
     public void replaceConsecutiveCharacter2() {
         // 测试用例2: 没有超过三个
-        assertEquals("abcd", stringHandlerImpl.replaceConsecutiveCharacter("abcd"));
+        assertEquals("abcd", stringHandlerImpl.replaceConsecutiveCharacterByJava8("abcd"));
     }
 
     @Test
     public void replaceConsecutiveCharacter3() {
         // 测试用例3: 超过三个
-        assertEquals("ab", stringHandlerImpl.replaceConsecutiveCharacter("aaaabbbbcccc"));
+        assertEquals("ab", stringHandlerImpl.replaceConsecutiveCharacterByJava8("aaaabbbbcccc"));
     }
 
     @Test
     public void replaceConsecutiveCharacter4() {
         // 测试用例4: 混过情况
-        assertEquals("abd", stringHandlerImpl.replaceConsecutiveCharacter("aabbbcccccdd"));
+        assertEquals("bdd", stringHandlerImpl.replaceConsecutiveCharacterByJava8("aabbbcccccdd"));
     }
 }

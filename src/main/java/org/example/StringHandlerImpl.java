@@ -3,6 +3,8 @@ package org.example;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringHandlerImpl implements StringHandler{
     @Override
@@ -54,6 +56,34 @@ public class StringHandlerImpl implements StringHandler{
 
     }
 
+    @Override
+    public String removeConsecutiveCharacterByJava8(String str) {
+        // 使用正则表达式找到三个或更多的连续字符
+        while (str.matches(".*([a-z])\\1{2,}.*")) {
+            // 替换这些连续字符为空字符串
+            str = str.replaceAll("([a-z])\\1{2,}", "");
+        }
+        return str;
+    }
+
+    @Override
+    public String replaceConsecutiveCharacterByJava8(String str) {
+        // 使用正则表达式找到三个或更多的连续字符
+        Pattern pattern = Pattern.compile("([a-z])\\1{2,}");
+        Matcher matcher = pattern.matcher(str);
+
+        while (matcher.find()) {
+            // 替换这些连续字符为它们前面的一个字符
+            char ch = matcher.group(1).charAt(0);
+            char prevChar = (char) (ch == 'a' ? ' ' : ch - 1);
+            str = matcher.replaceFirst(String.valueOf(prevChar));
+            // 重新创建 Matcher 对象，因为 replaceFirst 会消耗掉当前的 Matcher
+            matcher = pattern.matcher(str);
+        }
+
+        return str.trim();
+    }
+
     public static String replaceConsecutiveCharsHelper(String s) {
         StringBuilder result = new StringBuilder();
         int i = 0;
@@ -69,6 +99,9 @@ public class StringHandlerImpl implements StringHandler{
             } else {
                 // 替换为前一个字符
                 char prevChar = (char) (s.charAt(i) - 1);
+                if(prevChar=='`'){
+                    prevChar=' ';
+                }
                 result.append(prevChar);
             }
 
@@ -80,6 +113,8 @@ public class StringHandlerImpl implements StringHandler{
             return replaceConsecutiveCharsHelper(result.toString());
         }
 
-        return result.toString();
+        return result.toString().trim();
     }
+
+
 }
